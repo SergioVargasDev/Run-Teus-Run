@@ -23,7 +23,7 @@ struct GameOverView: View {
                 .offset(y: -25)
             
             VStack {
-                Text("Game Over")
+                Text("Game Over!")
                     .font(.largeTitle)
                     .foregroundStyle(.white)
                     .bold()
@@ -44,26 +44,42 @@ struct GameOverView: View {
                     .padding(.bottom)
                 
                 HStack {
-                    
-                    Spacer()
-                    
+                                        
                     // To restart the game
-                    Button("Restart") {
+                    Button {
                         currentGameState = .playing
+                    } label: {
+                        Text("Try Again!")
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                            .frame(maxWidth: UIScreen.main.bounds.width / 6, alignment: .center)
+                            .padding(15)
                     }
-                    .padding()
-                    .background(Color.white)
-                    .foregroundColor(.blue)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.white)
+                    )
                     .cornerRadius(10)
+                    .padding(.top)
+
                             
                     // To return to the First Screen
-                    Button("Menu") {
+                    Button {
                         currentGameState = .mainMenu
+                    } label: {
+                        Text("Menu")
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                            .frame(maxWidth: UIScreen.main.bounds.width / 6, alignment: .center)
+                            .padding(15)
                     }
-                    .padding()
-                    .background(Color.white)
-                    .foregroundColor(.blue)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.white)
+                    )
                     .cornerRadius(10)
+                    .padding(.top)
+
                 }
             }
         }

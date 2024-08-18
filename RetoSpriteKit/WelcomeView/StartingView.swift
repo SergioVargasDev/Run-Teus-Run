@@ -47,17 +47,21 @@ struct StartingView: View {
                 }
             
             // Give a different shape to the text
-            CircleText(radius: 110, text: "Run, Teus, Run!")
-                .font(.custom("PixelifySans-VariableFont_wght", size: 24))
+            CircleText(radius: 120, text: "Run, Teus, Run!")
+                //.font(.custom("PixelifySans-VariableFont_wght", size: 24))
+                .font(.title2)
+                .fontWeight(.semibold)
                 .foregroundStyle(.white)
             
             // Best score display
             VStack {
                 HStack {
-                    Text("Best: \(bestScore)")
-                        .font(.custom("PixelifySans-VariableFont_wght", size: 24))
+                    Text("Top Score: \(bestScore)")
+                        //.font(.custom("PixelifySans-VariableFont_wght", size: 24))
+                        .font(.title)
+                        .fontWeight(.semibold)
                         .foregroundColor(.white)
-                        .padding([.top, .leading], 20)
+                        .padding([.top, .leading])
                     Spacer()
                 }
                 Spacer()
@@ -69,18 +73,23 @@ struct StartingView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    // Change the game state to start playing
-                    Button(action: {
+                    
+                    Button {
                         currentGameState = .playing
-                    }) {
-                        Text("Start")
+                    } label: {
+                        Text("Let's Go!")
                             .font(.headline)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                            .foregroundColor(.blue)
+                            .frame(maxWidth: UIScreen.main.bounds.width / 6, alignment: .center)
+                            .padding(15)
                     }
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.white)
+                    )
+                    .cornerRadius(10)
                     .padding([.bottom, .trailing], 20)
+
                 }
             }
         }

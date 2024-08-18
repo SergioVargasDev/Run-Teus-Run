@@ -31,7 +31,7 @@ class ScoreManager {
         scoreLabel.fontName = "Arial"
         scoreLabel.fontSize = 30
         scoreLabel.horizontalAlignmentMode = .left
-        scoreLabel.position = CGPoint(x: 20, y: scene.size.height - 55)
+        scoreLabel.position = CGPoint(x: 30, y: scene.size.height - 60)
                 
         scene.addChild(scoreLabel)
     }

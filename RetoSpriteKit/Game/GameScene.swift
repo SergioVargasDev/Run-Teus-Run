@@ -141,13 +141,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let scale: CGFloat = 0.5
         
         // Textures
-        let enemyTexture1 = SKTexture(imageNamed: "granny1")
-        let enemyTexture2 = SKTexture(imageNamed: "granny2")
+        let enemyTexture1 = SKTexture(imageNamed: "ball1")
+        let enemyTexture2 = SKTexture(imageNamed: "ball2")
         enemyTexture1.filteringMode = .nearest
         enemyTexture2.filteringMode = .nearest
         
-        let enemyTexture3 = SKTexture(imageNamed: "gran1")
-        let enemyTexture4 = SKTexture(imageNamed: "gran2")
+        let enemyTexture3 = SKTexture(imageNamed: "footballPlayer")
+        let enemyTexture4 = SKTexture(imageNamed: "footballPlayer")
         enemyTexture3.filteringMode = .nearest
         enemyTexture4.filteringMode = .nearest
  
@@ -205,29 +205,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setupCollectable() {
         // Constants
         let scale: CGFloat = 0.5
+                
+        let objectTexture1 = SKTexture(imageNamed: "duck1")
+        let objectTexture2 = SKTexture(imageNamed: "duck2")
+        objectTexture1.filteringMode = .nearest
+        objectTexture2.filteringMode = .nearest
         
-        let objectTexture = SKTexture(imageNamed: "flower")
-        objectTexture.filteringMode = .nearest
-        
-        let objectNode = SKSpriteNode(texture: objectTexture)
+        // Create the sprite node with the initial texture
+        let objectNode = SKSpriteNode(texture: objectTexture1)
         objectNode.setScale(0.5)
+
+        // Create an animation action to constantly switch between the textures
+        let animationAction = SKAction.animate(with: [objectTexture1, objectTexture2], timePerFrame: 0.1)
+        let repeatAction = SKAction.repeatForever(animationAction)
+
+        // Run the animation on the object node
+        objectNode.run(repeatAction)
         
         // Animation
         let screenWidth = self.frame.size.width
         let distanceOffscreen: CGFloat = 50.0
-        let distanceToMove = screenWidth + distanceOffscreen + objectTexture.size().width * scale
+        let distanceToMove = screenWidth + distanceOffscreen + objectTexture1.size().width * scale
         
         let moveObject = SKAction.moveBy(x: -distanceToMove, y: 0.0, duration: TimeInterval(screenWidth / 500))
         let removeObject = SKAction.removeFromParent()
         let moveAndRemove = SKAction.sequence([moveObject, removeObject])
         
         // Position
-        objectNode.position = CGPoint(x: size.width + distanceOffscreen, y: size.height / 4)
+        objectNode.position = CGPoint(x: size.width + distanceOffscreen, y: size.height / 5)
         objectNode.zPosition = 2
         
         // Physics
-        let objectContact = CGSize(width: objectTexture.size().width * scale,
-                                   height: objectTexture.size().height * scale)
+        let objectContact = CGSize(width: objectTexture1.size().width * scale,
+                                   height: objectTexture1.size().height * scale)
         objectNode.physicsBody = SKPhysicsBody(rectangleOf: objectContact)
         objectNode.physicsBody?.isDynamic = false
         objectNode.physicsBody?.mass = 1.0
@@ -271,7 +281,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         characterNode.physicsBody?.collisionBitMask = PhysicsCategory.none
 
         let fadeOutAction = SKAction.fadeAlpha(to: 0.2, duration: 0.2)
-        let fadeInAction = SKAction.fadeAlpha(to: 1.0, duration: 1.0)
+        let fadeInAction = SKAction.fadeAlpha(to: 0.8, duration: 0.8)
 
         let sequenceAction = SKAction.sequence([fadeOutAction, fadeInAction])
 

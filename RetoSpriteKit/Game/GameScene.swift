@@ -147,13 +147,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemyTexture2.filteringMode = .nearest
         
         let enemyTexture3 = SKTexture(imageNamed: "footballPlayer")
-        let enemyTexture4 = SKTexture(imageNamed: "footballPlayer")
         enemyTexture3.filteringMode = .nearest
-        enemyTexture4.filteringMode = .nearest
  
         // Arrays of enemy textures
         let array1 = [enemyTexture1, enemyTexture2]
-        let array2 = [enemyTexture3, enemyTexture4]
+        let array2 = [enemyTexture3]
         
         // Randomly choose between the arrays so it gives you random enemies
         let randomTexture: [SKTexture] = Bool.random() ? array1 : array2

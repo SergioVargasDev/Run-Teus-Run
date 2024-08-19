@@ -68,7 +68,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Set physics body to nil to avoid interaction
             backgroundNode.physicsBody = nil
             
-            
             addChild(backgroundNode)
             backgroundNodes.append(backgroundNode)
         }
@@ -97,12 +96,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         // Textures
         let characterTexture1 = SKTexture(imageNamed: "teus")
-        let characterTexture2 = SKTexture(imageNamed: "teus")
         // This ensures that when the texture is scaled, it retains a pixelated look.
         characterTexture1.filteringMode = .nearest // .nearest = pixelated appearance
-        characterTexture2.filteringMode = .nearest // filteringMode = how the texture is rendered
             
-        let runningAnimation = SKAction.animate(with: [characterTexture1, characterTexture2], timePerFrame: 0.10)
+        let runningAnimation = SKAction.animate(with: [characterTexture1], timePerFrame: 0.10)
             
         characterNode = SKSpriteNode()
             

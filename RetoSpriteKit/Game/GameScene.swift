@@ -40,6 +40,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //------------- ESTO ES LO NUEVO -------------
     var backgroundMusic: SKAudioNode!
+    
+    let hitSounds = ["bigHit.mp3"]
 
     // Setup all the elements of the Scene
     override func didMove(to view: SKView) {
@@ -341,8 +343,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
            (contact.bodyA.categoryBitMask == PhysicsCategory.enemy && contact.bodyB.categoryBitMask == PhysicsCategory.character) {
 
             // ------------ NUEVO --------------
-
-            // Play hit sound
+            
             playSound(sound: "whistleSound", type: "mp3", identifier: "whistleSound")
             playSound(sound: "bigHit", type: "mp3", identifier: "bigHit")
 

@@ -7,16 +7,21 @@
 
 import AVFoundation
 
-var audioPlayers: [String: AVAudioPlayer]? = [:]
+var audioPlayers: [String: AVAudioPlayer] = [:]
 
 func playSound(sound: String, type: String, identifier: String) {
-    DispatchQueue.global(qos: .userInitiated).async { // Move the audio loading to a background thread
+    DispatchQueue.global(qos: .userInitiated).async {
         if let path = Bundle.main.path(forResource: sound, ofType: type) {
             do {
                 let player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+                player.prepareToPlay()
                 player.play()
                 print(player)
-                audioPlayers?[identifier] = player // Store the player with its identifier
+                
+                // Synchronize access to the audioPlayers dictionary
+                DispatchQueue.main.async {
+                    audioPlayers[identifier] = player
+                }
             } catch {
                 print("ERROR: Could not find or play sound file \(sound).\(type)")
             }
@@ -26,8 +31,8 @@ func playSound(sound: String, type: String, identifier: String) {
 
 // Function to stop a specific sound by its identifier
 func stopSound(identifier: String) {
-    if let player = audioPlayers?[identifier] {
+    if let player = audioPlayers[identifier] {
         player.stop()
-        audioPlayers?.removeValue(forKey: identifier)
+        audioPlayers.removeValue(forKey: identifier)
     }
 }

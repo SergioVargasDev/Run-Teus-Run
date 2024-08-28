@@ -9,6 +9,7 @@ import AVFoundation
 
 var audioPlayers: [String: AVAudioPlayer] = [:]
 
+// Responsible for playing a sound file asynchronously in the background, without blocking the main thread of the user interface
 func playSound(sound: String, type: String, identifier: String) {
     DispatchQueue.global(qos: .userInitiated).async {
         if let path = Bundle.main.path(forResource: sound, ofType: type) {
@@ -16,7 +17,6 @@ func playSound(sound: String, type: String, identifier: String) {
                 let player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
                 player.prepareToPlay()
                 player.play()
-                print(player)
                 
                 // Synchronize access to the audioPlayers dictionary
                 DispatchQueue.main.async {

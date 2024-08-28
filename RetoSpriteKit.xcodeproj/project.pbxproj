@@ -23,6 +23,7 @@
 		D950C6732C7EB6DE00216EF9 /* buttonSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D950C66A2C7EB6DE00216EF9 /* buttonSound.mp3 */; };
 		D950C6742C7EB6DE00216EF9 /* whistleSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D950C66B2C7EB6DE00216EF9 /* whistleSound.mp3 */; };
 		D950C6752C7EB6DE00216EF9 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D950C66C2C7EB6DE00216EF9 /* PlaySound.swift */; };
+		D950C6792C7FA08600216EF9 /* duckSound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D950C6782C7FA08600216EF9 /* duckSound2.mp3 */; };
 		D9DFB7B12C65983600264A9E /* StartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DFB7B02C65983600264A9E /* StartingView.swift */; };
 		D9DFB7B32C65F08A00264A9E /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DFB7B22C65F08A00264A9E /* ScoreManager.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		D950C66A2C7EB6DE00216EF9 /* buttonSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonSound.mp3; sourceTree = "<group>"; };
 		D950C66B2C7EB6DE00216EF9 /* whistleSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = whistleSound.mp3; sourceTree = "<group>"; };
 		D950C66C2C7EB6DE00216EF9 /* PlaySound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
+		D950C6782C7FA08600216EF9 /* duckSound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = duckSound2.mp3; sourceTree = "<group>"; };
 		D9DFB7B02C65983600264A9E /* StartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingView.swift; sourceTree = "<group>"; };
 		D9DFB7B22C65F08A00264A9E /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		D9DFB7B62C669ACE00264A9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				D950C6662C7EB6DE00216EF9 /* gameMusic.mp3 */,
 				D950C6672C7EB6DE00216EF9 /* bigHit.mp3 */,
 				D950C6682C7EB6DE00216EF9 /* duckSound.mp3 */,
+				D950C6782C7FA08600216EF9 /* duckSound2.mp3 */,
 				D950C6692C7EB6DE00216EF9 /* gameOver.mp3 */,
 				D950C66A2C7EB6DE00216EF9 /* buttonSound.mp3 */,
 				D950C66B2C7EB6DE00216EF9 /* whistleSound.mp3 */,
@@ -203,6 +206,7 @@
 			files = (
 				D950C6722C7EB6DE00216EF9 /* gameOver.mp3 in Resources */,
 				D950C6742C7EB6DE00216EF9 /* whistleSound.mp3 in Resources */,
+				D950C6792C7FA08600216EF9 /* duckSound2.mp3 in Resources */,
 				D90DCE3F2C6292FB00C0D74E /* Preview Assets.xcassets in Resources */,
 				D90DCE3C2C6292FB00C0D74E /* Assets.xcassets in Resources */,
 				D950C66D2C7EB6DE00216EF9 /* mainMenu.mp3 in Resources */,

@@ -41,8 +41,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //------------- ESTO ES LO NUEVO -------------
     var backgroundMusic: SKAudioNode!
     
-    let hitSounds = ["bigHit.mp3"]
-
     // Setup all the elements of the Scene
     override func didMove(to view: SKView) {
         setupBackground()
@@ -360,11 +358,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Object and character collided
             if let flowerNode = (contact.bodyA.categoryBitMask == PhysicsCategory.object) ? contact.bodyA.node as? SKSpriteNode : contact.bodyB.node as? SKSpriteNode {
                 
-                 // ------------ NUEVO --------------
+                // ------------ NUEVO --------------
 
-                 // Play duck sound
-                 playSound(sound: "duckSound", type: "mp3", identifier: "duck")
+                // Randomly select a duck sound in case you have MORE than 2 ducks
+                let duckSounds = ["duckSound", "duckSound2"]
 
+                let randomIndex = Int.random(in: 0..<duckSounds.count)
+                let selectedDuck = duckSounds[randomIndex]
+                
+                // In case you have ONLY 2 ducks
+                let randomSound: String = Bool.random() ? "duckSound" : "duckSound2"
+
+                // Play duck sound
+                playSound(sound: randomSound, type: "mp3", identifier: "duck")
+                
                 // Remove the object from the scene
                 flowerNode.removeFromParent()
                 

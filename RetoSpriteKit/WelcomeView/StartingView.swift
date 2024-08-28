@@ -75,6 +75,10 @@ struct StartingView: View {
                     Spacer()
                     
                     Button {
+                        // ------------ NUEVO --------------
+                        playSound(sound: "buttonSound", type: "mp3", identifier: "buttonSound")
+                        stopSound(identifier: "menuMusic") // Stop the menu music
+
                         currentGameState = .playing
                     } label: {
                         Text("Let's Go!")
@@ -92,6 +96,10 @@ struct StartingView: View {
 
                 }
             }
+        }
+        .onAppear {
+            // ------------ NUEVO --------------
+            playSound(sound: "mainMenu", type: "mp3", identifier: "menuMusic")
         }
     }
 }

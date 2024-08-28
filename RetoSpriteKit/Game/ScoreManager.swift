@@ -25,33 +25,39 @@ class ScoreManager {
         loadHighScore()
     }
 
-    // This will set up the text of the Score (Score: 999)
+    // Score Label
     func setupScoreLabel(in scene: SKScene) {
-        // Default Text
-        
-        // Font Selection
-        
-        // Position
-
+        scoreLabel = SKLabelNode(text: "Score: 0")
+        scoreLabel.fontName = "Arial"
+        scoreLabel.fontSize = 30
+        scoreLabel.horizontalAlignmentMode = .left
+        scoreLabel.position = CGPoint(x: 30, y: scene.size.height - 60)
+                
+        scene.addChild(scoreLabel)
     }
 
-    // I will update the score based on the distance!
+    // Update the score based on the distance
     func updateScore() {
+
+        score += 1
         
         // Update the score label text
+        scoreLabel.text = "Score: \(score + flowerCount)"
         
-        // Check if it’s a new high score
-        
+        // Check for new high score
+        checkAndUpdateHighScore()
     }
     
-    // I will update the score based on the ducks we pick up!
+    // Extra points (obtained by collecting objects) are added.
     func addScore(points: Int) {
-        // Add 100 points for each collected object
+        // Add points to the score
+        flowerCount += points * 100 // Add 100 points for each object collected
 
-        // Update the score label text
-
-        // Check if it’s a new high score
+        // Update the score label
+        scoreLabel.text = "Score: \(score + flowerCount)"
         
+        // Check for new high score
+        checkAndUpdateHighScore()
     }
     
     // The score is restarted each time a new game is started
@@ -67,18 +73,24 @@ class ScoreManager {
     }
     
     // UserDefaults: "An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app"
-    // Let’s declare a variable (key) that will hold the highscore
+    // Basically you are building a key to save a single data across the whole app
+    private let highScoreKey = "HighScore"
 
-    
-    // Load High Score from UserDefaults for displaying
-    // UserDefaults prevents data from resetting when closing the app
+    // Load high score from UserDefaults to display it in the Starting View
     private func loadHighScore() {
-
+        if let savedHighScore = UserDefaults.standard.value(forKey: highScoreKey) as? Int {
+            score = savedHighScore
+        }
     }
 
     // Check and update high score if needed
     private func checkAndUpdateHighScore() {
-        // Update high score in UserDefaults
-            
+        let currentTotalScore = score + flowerCount
+
+        if currentTotalScore > UserDefaults.standard.integer(forKey: highScoreKey) {
+            // Update high score in UserDefaults
+            UserDefaults.standard.set(currentTotalScore, forKey: highScoreKey)
+            UserDefaults.standard.synchronize()
+        }
     }
 }

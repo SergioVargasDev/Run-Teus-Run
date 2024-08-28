@@ -56,11 +56,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         
         // ------------ NUEVO --------------
-        // Music
-        if let musicURL = Bundle.main.url(forResource: "gameMusic", withExtension: "mp3") {
-            backgroundMusic = SKAudioNode(url: musicURL)
-            addChild(backgroundMusic)
-        }
 
     }
     
@@ -288,9 +283,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         // ------------ NUEVO --------------
 
-        // Teus Movement Sound
-        playSound(sound: "teusMovingSound", type: "mp3", identifier: "teus")
-
         let fadeOutAction = SKAction.fadeAlpha(to: 0.2, duration: 0.2)
         let fadeInAction = SKAction.fadeAlpha(to: 0.8, duration: 0.8)
 
@@ -342,9 +334,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             // ------------ NUEVO --------------
             
-            playSound(sound: "whistleSound", type: "mp3", identifier: "whistleSound")
-            playSound(sound: "bigHit", type: "mp3", identifier: "bigHit")
-
             // Show Game Over
             gameState = .gameOver
             onGameOver?()
@@ -358,20 +347,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Object and character collided
             if let flowerNode = (contact.bodyA.categoryBitMask == PhysicsCategory.object) ? contact.bodyA.node as? SKSpriteNode : contact.bodyB.node as? SKSpriteNode {
                 
-                // ------------ NUEVO --------------
-
                 // Randomly select a duck sound in case you have MORE than 2 ducks
-                let duckSounds = ["duckSound", "duckSound2"]
+                // let duckSounds = ["duckSound", "duckSound2"]
 
-                let randomIndex = Int.random(in: 0..<duckSounds.count)
-                let selectedDuck = duckSounds[randomIndex]
+                // let randomIndex = Int.random(in: 0..<duckSounds.count)
+                // let selectedDuck = duckSounds[randomIndex]
                 
-                // In case you have ONLY 2 ducks
-                let randomSound: String = Bool.random() ? "duckSound" : "duckSound2"
-
-                // Play duck sound
-                playSound(sound: randomSound, type: "mp3", identifier: "duck")
-                
+                // ------------ NUEVO --------------
+                                
                 // Remove the object from the scene
                 flowerNode.removeFromParent()
                 

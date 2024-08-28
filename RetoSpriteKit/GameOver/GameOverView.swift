@@ -54,7 +54,7 @@ struct GameOverView: View {
                     Button {
                         // ------------ NUEVO --------------
                         playSound(sound: "buttonSound", type: "mp3", identifier: "buttonSound")
-                        stopSound(identifier: "gameOver") // Stop the menu music
+                        stopSound(identifier: "gameOver") // Stop the gameOver music
 
                         currentGameState = .playing
                     } label: {
@@ -76,7 +76,7 @@ struct GameOverView: View {
                     Button {
                         // ------------ NUEVO --------------
                         playSound(sound: "buttonSound", type: "mp3", identifier: "buttonSound")
-                        stopSound(identifier: "gameOver") // Stop the menu music
+                        stopSound(identifier: "gameOver") // Stop the gameOver music
 
                         currentGameState = .mainMenu
                     } label: {

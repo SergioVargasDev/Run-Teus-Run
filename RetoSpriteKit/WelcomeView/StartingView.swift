@@ -75,6 +75,8 @@ struct StartingView: View {
                     Spacer()
                     
                     Button {
+                        // ------------ NUEVO --------------
+
                         currentGameState = .playing
                     } label: {
                         Text("Let's Go!")
@@ -92,6 +94,10 @@ struct StartingView: View {
 
                 }
             }
+        }
+        .onAppear {
+            // ------------ NUEVO --------------
+            
         }
     }
 }

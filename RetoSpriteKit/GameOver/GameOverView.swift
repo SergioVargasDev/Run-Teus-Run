@@ -40,13 +40,22 @@ struct GameOverView: View {
                         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
                             currentImageIndex = (currentImageIndex + 1) % totalImages
                         }
-                    }
-                    .padding(.bottom)
+                        
+                        // ------------ NUEVO --------------
+                        playSound(sound: "gameOver", type: "mp3", identifier: "gameOver")
+                        
+
+                }
+                .padding(.bottom)
                 
                 HStack {
                                         
                     // To restart the game
                     Button {
+                        // ------------ NUEVO --------------
+                        playSound(sound: "buttonSound", type: "mp3", identifier: "buttonSound")
+                        stopSound(identifier: "gameOver") // Stop the gameOver music
+
                         currentGameState = .playing
                     } label: {
                         Text("Try Again!")
@@ -65,6 +74,10 @@ struct GameOverView: View {
                             
                     // To return to the First Screen
                     Button {
+                        // ------------ NUEVO --------------
+                        playSound(sound: "buttonSound", type: "mp3", identifier: "buttonSound")
+                        stopSound(identifier: "gameOver") // Stop the gameOver music
+
                         currentGameState = .mainMenu
                     } label: {
                         Text("Menu")

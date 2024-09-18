@@ -11,7 +11,7 @@ import SpriteKit
 struct GameSceneView: View {
     @Binding var currentGameState: GameState
     
-    // Crear una instancia de la escena (tipo GameScene)
+    // Create a scene instance (GameScene type)
     var gameScene: GameScene {
         let scene = GameScene()
         scene.size = UIScreen.main.bounds.size
@@ -22,9 +22,9 @@ struct GameSceneView: View {
         return scene
     }
     
-    // Se genera la vista
+    // The view is generated
     var body: some View {
-        SpriteView(scene: gameScene) // Se utilizará SpriteView debido a la naturaleza de la escena
+        SpriteView(scene: gameScene) // SpriteView will be used due to the nature of the scene
             .ignoresSafeArea()
     }
 }

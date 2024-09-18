@@ -38,6 +38,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // To stop the movement
     var shouldMoveCharacter = true
     
+    //------------- ESTO ES LO NUEVO -------------
+    var backgroundMusic: SKAudioNode!
+    
     // Setup all the elements of the Scene
     override func didMove(to view: SKView) {
         setupBackground()
@@ -47,10 +50,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreManager = ScoreManager(scene: self)
         scoreManager.scoreLabel.zPosition = 2
         scoreManager.resetScore()
-
+        
         // contactDelegate allows you to assign an object to receive notifications when two physics bodies in the scene collide
         // so this line helps to notify the scene that a collision is happening
         physicsWorld.contactDelegate = self
+        
+        // ------------ NUEVO --------------
+
     }
     
     // Background
@@ -275,6 +281,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         characterNode.physicsBody?.contactTestBitMask = PhysicsCategory.none
         characterNode.physicsBody?.collisionBitMask = PhysicsCategory.none
 
+        // ------------ NUEVO --------------
+
         let fadeOutAction = SKAction.fadeAlpha(to: 0.2, duration: 0.2)
         let fadeInAction = SKAction.fadeAlpha(to: 0.8, duration: 0.8)
 
@@ -323,20 +331,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // If the character collides with an enemy, the game state changes to gameOver, stopping the character's movement and invoking the onGameOver closure.
         if (contact.bodyA.categoryBitMask == PhysicsCategory.character && contact.bodyB.categoryBitMask == PhysicsCategory.enemy) ||
            (contact.bodyA.categoryBitMask == PhysicsCategory.enemy && contact.bodyB.categoryBitMask == PhysicsCategory.character) {
+
+            // ------------ NUEVO --------------
             
             // Show Game Over
             gameState = .gameOver
             onGameOver?()
                                     
-            // If they collide, the ghost stays in the same position
-            /*
-            shouldMoveCharacter = false
-            characterNode.position = CGPoint(x: size.width / 5, y: size.height / 4)
-            
-            characterNode.physicsBody?.isDynamic = false
-            characterNode.physicsBody?.affectedByGravity = false
-            characterNode.physicsBody?.velocity = CGVector.zero
-             */
         }
         
         // If the character collides with a collectable object, the oject is removed from the scene, and the score increases by 10 points.
@@ -346,6 +347,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // Object and character collided
             if let flowerNode = (contact.bodyA.categoryBitMask == PhysicsCategory.object) ? contact.bodyA.node as? SKSpriteNode : contact.bodyB.node as? SKSpriteNode {
                 
+                // Randomly select a duck sound in case you have MORE than 2 ducks
+                // let duckSounds = ["duckSound", "duckSound2"]
+
+                // let randomIndex = Int.random(in: 0..<duckSounds.count)
+                // let selectedDuck = duckSounds[randomIndex]
+                
+                // ------------ NUEVO --------------
+                                
                 // Remove the object from the scene
                 flowerNode.removeFromParent()
                 
@@ -355,4 +364,3 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 }
-
